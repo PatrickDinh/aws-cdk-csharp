@@ -1,0 +1,17 @@
+{
+  "name": "aws-cdk-csharp",
+  "version": "1.0.0",
+  "description": "This is a blank project for CDK development with C#.",
+  "main": "index.js",
+  "scripts": {
+    "cdk": "cdk",
+    "bootstrap:local": "cdk bootstrap --profile sandbox",
+    "diff:local": "cdk diff --profile sandbox",
+    "deploy:local": "cdk deploy --profile sandbox"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cdk": "^2.85.0"
+  }
+}
