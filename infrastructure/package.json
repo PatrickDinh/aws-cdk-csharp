@@ -7,7 +7,7 @@
     "cdk": "cdk",
     "bootstrap:local": "cdk bootstrap --profile sandbox",
     "diff:local": "cdk diff --profile sandbox",
-    "deploy:local": "cdk deploy --profile sandbox"
+    "deploy:local": "cdk deploy --profile sandbox --require-approval never"
   },
   "author": "",
   "license": "ISC",
