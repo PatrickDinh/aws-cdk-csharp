@@ -16,10 +16,13 @@ namespace Infrastructure
                 Handler = "HelloWorld::HelloWorld.Function::FunctionHandler",
                 Code = new AssetCode(@"../HelloWorld/src/HelloWorld/bin/Release/net6.0/HelloWorld.zip"),
                 Runtime = Runtime.DOTNET_6,
+                Timeout = Duration.Seconds(30),
                 Environment = new Dictionary<string, string> {
                     { "TOP_SECRET_ARN", props.TopSecret.SecretFullArn }
                 }
             });
+
+            props.TopSecret.GrantRead(lambda);
         }
     }
 

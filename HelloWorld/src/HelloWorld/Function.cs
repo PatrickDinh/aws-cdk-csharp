@@ -1,6 +1,10 @@
 using Amazon.Lambda.Core;
+using Amazon.SecretsManager;
+using Amazon.SecretsManager.Model;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
+
+
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
 namespace HelloWorld;
@@ -14,8 +18,21 @@ public class Function
     /// <param name="input"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public string FunctionHandler(string input, ILambdaContext context)
+    public async Task<string> FunctionHandler(string input)
     {
-        return input.ToUpper();
+        var topSecretValue = await GetTopSecret();
+        return $"{input.ToUpper()} - {topSecretValue}";
+    }
+
+    private async Task<string> GetTopSecret()
+    {
+        var topSecretArn = Environment.GetEnvironmentVariable("TOP_SECRET_ARN");
+        var client = new AmazonSecretsManagerClient();
+        var secret = await client.GetSecretValueAsync(new GetSecretValueRequest
+        {
+            SecretId = topSecretArn,
+        });
+
+        return secret.SecretString;
     }
 }
