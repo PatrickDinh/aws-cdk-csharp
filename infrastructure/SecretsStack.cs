@@ -13,6 +13,12 @@ namespace Infrastructure
             TopSecret = new Secret(this, "ThisIsTopSecret", new SecretProps() {
                 SecretStringValue = new SecretValue("Do not tell anyone")
             });
+
+            new CfnOutput(this, "TopSecretArn", new CfnOutputProps
+            {
+                ExportName = "TopSecretArn",
+                Value = TopSecret.SecretArn
+            });
         }
     }
 }

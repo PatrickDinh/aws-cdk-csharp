@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lambda.Tests", "Lambda.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{A1F6DE8D-50F9-46F3-80A1-E9094004F2AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.SetSecrets", "Infrastructure.SetSecrets\Infrastructure.SetSecrets.csproj", "{F735A9E3-8CFD-43C7-847B-F0E9380A3CC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A1F6DE8D-50F9-46F3-80A1-E9094004F2AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1F6DE8D-50F9-46F3-80A1-E9094004F2AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1F6DE8D-50F9-46F3-80A1-E9094004F2AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F735A9E3-8CFD-43C7-847B-F0E9380A3CC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F735A9E3-8CFD-43C7-847B-F0E9380A3CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F735A9E3-8CFD-43C7-847B-F0E9380A3CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F735A9E3-8CFD-43C7-847B-F0E9380A3CC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

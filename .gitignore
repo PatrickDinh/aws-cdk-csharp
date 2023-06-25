@@ -342,3 +342,4 @@ ASALocalRun/
 
 # End of https://www.gitignore.io/api/csharp
 No newline at end of file
+cdk-outputs.json
