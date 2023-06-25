@@ -13,8 +13,8 @@ namespace Infrastructure
         {
             var lambda = new Function(this, "HelloWorldLambda", new FunctionProps
             {
-                Handler = "HelloWorld::HelloWorld.Function::FunctionHandler",
-                Code = new AssetCode(@"../HelloWorld/src/HelloWorld/bin/Release/net6.0/HelloWorld.zip"),
+                Handler = "Lambda::Lambda.Function::FunctionHandler",
+                Code = new AssetCode(@"src/HelloWorld/bin/Release/net6.0/HelloWorld.zip"),
                 Runtime = Runtime.DOTNET_6,
                 Timeout = Duration.Seconds(30),
                 Environment = new Dictionary<string, string> {

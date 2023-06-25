@@ -7,17 +7,10 @@ using Amazon.SecretsManager.Model;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
-namespace HelloWorld;
+namespace Lambda;
 
 public class Function
 {
-    
-    /// <summary>
-    /// A simple function that takes a string and does a ToUpper
-    /// </summary>
-    /// <param name="input"></param>
-    /// <param name="context"></param>
-    /// <returns></returns>
     public async Task<string> FunctionHandler(string input)
     {
         var topSecretValue = await GetTopSecret();
@@ -26,6 +19,7 @@ public class Function
 
     private async Task<string> GetTopSecret()
     {
+        // TODO: make this work locally
         var topSecretArn = Environment.GetEnvironmentVariable("TOP_SECRET_ARN");
         var client = new AmazonSecretsManagerClient();
         var secret = await client.GetSecretValueAsync(new GetSecretValueRequest
