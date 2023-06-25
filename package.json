@@ -8,7 +8,8 @@
     "bootstrap:local": "cdk bootstrap --profile sandbox",
     "diff:local": "cdk diff --profile sandbox",
     "synth:local": "cdk synth  --profile sandbox",
-    "deploy:local": "cdk deploy --profile sandbox --require-approval never --all"
+    "deploy:local": "cdk deploy --profile sandbox --require-approval never --all",
+    "package:lambda": "cd Lambda && dotnet lambda package"
   },
   "author": "",
   "license": "ISC",
