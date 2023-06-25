@@ -11,6 +11,6 @@ public class FunctionTest
         var function = new Function();
         var upperCase = await function.FunctionHandler("hello world");
 
-        Assert.Equal("HELLO WORLD", upperCase);
+        Assert.Equal("HELLO WORLD - :)", upperCase);
     }
 }

@@ -19,14 +19,20 @@ public class Function
 
     private async Task<string> GetTopSecret()
     {
-        // TODO: make this work locally
-        var topSecretArn = Environment.GetEnvironmentVariable("TOP_SECRET_ARN");
-        var client = new AmazonSecretsManagerClient();
-        var secret = await client.GetSecretValueAsync(new GetSecretValueRequest
+        var environmentName = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
+        if (environmentName != "Development")
         {
-            SecretId = topSecretArn,
-        });
+            // TODO: make this work locally
+            var topSecretArn = Environment.GetEnvironmentVariable("TOP_SECRET_ARN");
+            var client = new AmazonSecretsManagerClient();
+            var secret = await client.GetSecretValueAsync(new GetSecretValueRequest
+            {
+                SecretId = topSecretArn,
+            });
+            
+            return secret.SecretString;
+        }
 
-        return secret.SecretString;
+        return ":)";
     }
 }
