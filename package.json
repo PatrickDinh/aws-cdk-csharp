@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "cdk": "cdk",
-    "bootstrap:local": "cdk bootstrap --profile sandbox",
-    "diff:local": "cdk diff --profile sandbox",
-    "synth:local": "cdk synth  --profile sandbox",
-    "deploy:local": "cdk deploy --profile sandbox --require-approval never --all --outputs-file ./cdk-outputs.json",
+    "bootstrap": "cdk bootstrap",
+    "diff": "cdk diff",
+    "synth": "cdk synth",
+    "deploy": "cdk deploy --require-approval never --all --outputs-file ./cdk-outputs.json",
     "package:lambda": "cd Lambda && dotnet lambda package",
-    "set-secrets:local": "dotnet run --project ./Infrastructure.SetSecrets/Infrastructure.SetSecrets.csproj"
+    "set-secrets": "dotnet run --project ./Infrastructure.SetSecrets/Infrastructure.SetSecrets.csproj"
   },
   "author": "",
   "license": "ISC",
