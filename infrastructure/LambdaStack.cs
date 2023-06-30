@@ -14,7 +14,7 @@ namespace Infrastructure
             var lambda = new Function(this, "AwsCdkLambda", new FunctionProps
             {
                 Handler = "Lambda::Lambda.Function::FunctionHandler",
-                Code = new AssetCode(@"Lambda/bin/Release/net6.0/Lambda.zip"),
+                Code = new AssetCode(@"../Lambda/bin/Release/net6.0/Lambda.zip"),
                 Runtime = Runtime.DOTNET_6,
                 Timeout = Duration.Seconds(30),
                 Environment = new Dictionary<string, string> {
