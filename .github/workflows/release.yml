@@ -1,0 +1,72 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - practice-run
+
+env:
+  WORKING_DIRECTORY: .
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: build
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Setup .NET Core SDK 6
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Install Amazon.Lambda.Tools
+        run: dotnet tool install -g Amazon.Lambda.Tools
+
+      - name: Install dependencies
+        run: dotnet restore
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Package lambda
+        run: dotnet lambda package
+        working-directory: ${{ env.WORKING_DIRECTORY }}/Lambda
+
+      - name: Build infrastructure
+        run: dotnet build --configuration Release --runtime linux-x64 --no-self-contained
+        working-directory: ${{ env.WORKING_DIRECTORY }}/Infrastructure
+
+      - name: Build set secrets
+        run: dotnet build --configuration Release --runtime linux-x64 --no-self-contained
+        working-directory: ${{ env.WORKING_DIRECTORY }}/Infrastructure.SetSecrets
+
+      - name: Create infrastructure artifact
+        shell: bash
+        run: zip -q -r ${{ env.WORKING_DIRECTORY }}/infrastructure.zip *
+        working-directory: ${{ env.WORKING_DIRECTORY }}/Infrastructure/bin/Release/linux-x64
+        
+      - name: Create infrastructure set secrets artifact
+        shell: bash
+        run: zip -q -r ${{ env.WORKING_DIRECTORY }}/infrastructure-set-secrets.zip *
+        working-directory: ${{ env.WORKING_DIRECTORY }}/Infrastructure.SetSecrets/bin/Release/linux-x64
+
+      - name: Upload lambda artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: lambda
+          path: ${{ env.WORKING_DIRECTORY }}/Lambda/bin/Release/Lambda.zip
+          if-no-files-found: error
+          
+      - name: Upload infrastructure artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: infrastructure
+          path: ${{ env.WORKING_DIRECTORY }}/infrastructure.zip
+          if-no-files-found: error
+          
+      - name: Upload infrastructure set secrets artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: infrastructure-set-secrets
+          path: ${{ env.WORKING_DIRECTORY }}/infrastructure-set-secrets.zip
+          if-no-files-found: error
