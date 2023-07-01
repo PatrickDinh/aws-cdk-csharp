@@ -70,3 +70,49 @@ jobs:
           name: infrastructure-set-secrets
           path: ${{ env.WORKING_DIRECTORY }}/infrastructure-set-secrets.zip
           if-no-files-found: error
+          
+  release:
+    runs-on: ubuntu-latest
+    name: release
+    needs: build
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        path: ${{ env.WORKING_DIRECTORY }}/artifacts
+
+    - name: Setup .NET Core SDK 6
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: lts/*
+        
+    - name: Unzip infrastructure artifact
+      run: |
+        unzip -q ${{ env.WORKING_DIRECTORY }}/artifacts/infrastructure/infrastructure.zip -d ${{ env.WORKING_DIRECTORY }}/infrastructure
+      
+    - name: Unzip infrastructure-set-secrets artifact
+      run: |
+        unzip -q ${{ env.WORKING_DIRECTORY }}/artifacts/infrastructure-set-secrets/infrastructure-set-secrets.zip -d ${{ env.WORKING_DIRECTORY }}/infrastructure-set-secrets
+
+    - name: Configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+        
+    - name: CDK bootstrap
+      run: npm run bootstrap
+      working-directory: ${{ env.WORKING_DIRECTORY }}/infrastructure
+      
+    - name: CDK deploy
+      run: npm run deploy
+      working-directory: ${{ env.WORKING_DIRECTORY }}/infrastructure
