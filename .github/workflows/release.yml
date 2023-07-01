@@ -43,12 +43,12 @@ jobs:
       - name: Create infrastructure artifact
         shell: bash
         run: zip -q -r ${{ env.WORKING_DIRECTORY }}/infrastructure.zip *
-        working-directory: ${{ env.WORKING_DIRECTORY }}/Infrastructure/bin/Release/linux-x64
+        working-directory: ${{ env.WORKING_DIRECTORY }}/Infrastructure/bin/Release/net6.0/linux-x64/linux-x64
         
       - name: Create infrastructure set secrets artifact
         shell: bash
         run: zip -q -r ${{ env.WORKING_DIRECTORY }}/infrastructure-set-secrets.zip *
-        working-directory: ${{ env.WORKING_DIRECTORY }}/Infrastructure.SetSecrets/bin/Release/linux-x64
+        working-directory: ${{ env.WORKING_DIRECTORY }}/Infrastructure.SetSecrets/bin/Release/net6.0/linux-x64/linux-x64
 
       - name: Upload lambda artifact
         uses: actions/upload-artifact@v3
