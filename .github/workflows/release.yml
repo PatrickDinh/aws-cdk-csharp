@@ -6,7 +6,7 @@ on:
       - practice-run
 
 env:
-  WORKING_DIRECTORY: .
+  WORKING_DIRECTORY: ${GITHUB_WORKSPACE}
 
 jobs:
   build:
