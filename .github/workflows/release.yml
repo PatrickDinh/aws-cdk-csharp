@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: lambda
-          path: ${{ env.WORKING_DIRECTORY }}/Lambda/bin/Release/Lambda.zip
+          path: ${{ env.WORKING_DIRECTORY }}/Lambda/bin/Release/net6.0/Lambda.zip
           if-no-files-found: error
           
       - name: Upload infrastructure artifact
