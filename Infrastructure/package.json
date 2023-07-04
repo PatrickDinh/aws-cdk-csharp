@@ -10,8 +10,8 @@
     "synth": "cdk synth",
     "deploy:local": "cdk deploy --require-approval never --all --outputs-file ./cdk-outputs.json",
     "deploy": "cdk deploy  --app \"dotnet Infrastructure.dll\" --require-approval never --all --outputs-file ./cdk-outputs.json",
-    "package:lambda": "cd Lambda && dotnet lambda package",
-    "set-secrets": "dotnet run --project ./Infrastructure.SetSecrets/Infrastructure.SetSecrets.csproj"
+    "package:lambda": "cd ../Lambda && dotnet lambda package",
+    "set-secrets:local": "dotnet run --project ./Infrastructure.SetSecrets/Infrastructure.SetSecrets.csproj",
   },
   "author": "",
   "license": "ISC",
