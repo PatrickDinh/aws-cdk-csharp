@@ -13,8 +13,9 @@ var topSecretArn = cdkOutputs["AwsCdkCsharp-Secrets-Stack"]["TopSecretArn"];
 
 Console.WriteLine($"Setting secret for ARN {topSecretArn}");
 
-var credentials = LoadSsoCredentials("default");
-var client = new AmazonSecretsManagerClient(credentials, RegionEndpoint.APSoutheast2);
+// var credentials = LoadSsoCredentials("default");
+// var client = new AmazonSecretsManagerClient(credentials, RegionEndpoint.APSoutheast2);
+var client = new AmazonSecretsManagerClient();
 await client.UpdateSecretAsync(new UpdateSecretRequest
 {
     SecretId = topSecretArn,
