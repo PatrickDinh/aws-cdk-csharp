@@ -32,6 +32,10 @@ jobs:
         run: dotnet lambda package
         working-directory: ${{ env.WORKING_DIRECTORY }}/Lambda
 
+      - name: Restore infrastructure NPM packages
+        run: npm ci
+        working-directory: ${{ env.WORKING_DIRECTORY }}/Infrastructure
+
       - name: Build infrastructure
         run: dotnet build --configuration Release --runtime linux-x64 --no-self-contained
         working-directory: ${{ env.WORKING_DIRECTORY }}/Infrastructure
