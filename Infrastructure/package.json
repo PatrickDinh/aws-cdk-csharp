@@ -4,6 +4,7 @@
   "description": "This is a blank project for CDK development with C#.",
   "main": "index.js",
   "scripts": {
+    "cdk": "cdk",
     "bootstrap:local": "cdk bootstrap",
     "bootstrap": "cdk bootstrap --app \"dotnet Infrastructure.dll\"",
     "diff": "cdk diff",
