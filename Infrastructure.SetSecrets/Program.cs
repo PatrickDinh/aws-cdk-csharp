@@ -1,12 +1,12 @@
-﻿using System.Diagnostics;
-using Amazon;
+﻿using Amazon;
 using Amazon.Runtime;
 using Amazon.Runtime.CredentialManagement;
 using Amazon.SecretsManager;
 using Amazon.SecretsManager.Model;
 using Newtonsoft.Json;
 
-var cdkOutputsFileContent = File.ReadAllText("cdk-outputs.json");
+var cdkOutputsFilePath = Environment.GetEnvironmentVariable("CDK_OUTPUTS_PATH");
+var cdkOutputsFileContent = File.ReadAllText(cdkOutputsFilePath ?? "../Infrastructure/cdk-outputs.json");
 var cdkOutputs = JsonConvert.DeserializeObject(cdkOutputsFileContent) as dynamic;
 
 var topSecretArn = cdkOutputs["AwsCdkCsharp-Secrets-Stack"]["TopSecretArn"];

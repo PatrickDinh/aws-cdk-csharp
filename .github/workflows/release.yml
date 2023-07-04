@@ -129,7 +129,9 @@ jobs:
       working-directory: ${{ env.WORKING_DIRECTORY }}/infrastructure
       
     - name: CDK deploy
-      run: npm run deploy
+      run: |
+        npm run deploy
+        echo "CDK_OUTPUTS_PATH=${{ env.WORKING_DIRECTORY }}/infrastructure/cdk-outputs.json" >> $GITHUB_ENV
       working-directory: ${{ env.WORKING_DIRECTORY }}/infrastructure
       
     - name: CDK set secrets
