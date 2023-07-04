@@ -14,7 +14,7 @@ var topSecretArn = cdkOutputs["AwsCdkCsharp-Secrets-Stack"]["TopSecretArn"];
 Console.WriteLine($"Setting secret for ARN {topSecretArn}");
 
 AmazonSecretsManagerClient client;
-if (string.IsNullOrWhiteSpace(cdkOutputsFilePath))
+if (!string.IsNullOrWhiteSpace(cdkOutputsFilePath))
 {
     client = new AmazonSecretsManagerClient();
 }
