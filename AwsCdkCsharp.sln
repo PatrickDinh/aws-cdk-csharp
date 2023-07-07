@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lambda", "Lambda\Lambda.csproj", "{4BF13924-AF94-4F08-A48E-458AD0426BFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lambda.Tests", "Lambda.Tests\Lambda.Tests.csproj", "{BFC344FC-E13E-4AF1-A792-ADB272584C76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BF13924-AF94-4F08-A48E-458AD0426BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF13924-AF94-4F08-A48E-458AD0426BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF13924-AF94-4F08-A48E-458AD0426BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF13924-AF94-4F08-A48E-458AD0426BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFC344FC-E13E-4AF1-A792-ADB272584C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFC344FC-E13E-4AF1-A792-ADB272584C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFC344FC-E13E-4AF1-A792-ADB272584C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC344FC-E13E-4AF1-A792-ADB272584C76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
