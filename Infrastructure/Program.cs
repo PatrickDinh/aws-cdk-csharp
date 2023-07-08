@@ -10,7 +10,11 @@ namespace Infrastructure
         public static void Main(string[] args)
         {
             var app = new App();
-            new LambdaStack(app, "AwsCdkCSharp-Lambda-Stack-Step-1");
+            var secretsStack = new SecretsStack(app, "AwsCdkCSharp-Secrets-Stack-Step-2");
+            new LambdaStack(app, "AwsCdkCSharp-Lambda-Stack-Step-2", new LambdaStackProps
+            {
+                TopSecret = secretsStack.TopSecret
+            });
             app.Synth();
         }
     }
