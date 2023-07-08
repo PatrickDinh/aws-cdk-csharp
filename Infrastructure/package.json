@@ -1,0 +1,18 @@
+﻿{
+  "name": "aws-cdk-csharp",
+  "version": "1.0.0",
+  "description": "This is a blank project for CDK development with C#.",
+  "main": "index.js",
+  "scripts": {
+    "bootstrap": "cdk bootstrap",
+    "diff": "cdk diff",
+    "synth": "cdk synth",
+    "deploy": "cdk deploy --require-approval never --all --outputs-file ./cdk-outputs.json",
+    "package:lambda": "cd ../Lambda && dotnet lambda package"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cdk": "^2.85.0"
+  }
+}
