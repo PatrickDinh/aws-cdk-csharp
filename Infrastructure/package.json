@@ -4,10 +4,12 @@
   "description": "This is a blank project for CDK development with C#.",
   "main": "index.js",
   "scripts": {
-    "bootstrap": "cdk bootstrap",
+    "bootstrap:local": "cdk bootstrap",
+    "bootstrap": "cdk bootstrap --app \"dotnet Infrastructure.dll\"",
     "diff": "cdk diff",
     "synth": "cdk synth",
-    "deploy": "cdk deploy --require-approval never --all --outputs-file ./cdk-outputs.json",
+    "deploy:local": "cdk deploy --require-approval never --all --outputs-file ./cdk-outputs.json",
+    "deploy": "cdk deploy  --app \"dotnet Infrastructure.dll\" --require-approval never --all --outputs-file ./cdk-outputs.json",
     "package:lambda": "cd ../Lambda && dotnet lambda package",
     "set-secrets:local": "dotnet run --project ../Infrastructure.SetSecrets/Infrastructure.SetSecrets.csproj"
   },

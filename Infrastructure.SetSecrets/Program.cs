@@ -5,14 +5,23 @@ using Amazon.SecretsManager;
 using Amazon.SecretsManager.Model;
 using Newtonsoft.Json;
 
-var cdkOutputsFileContent = File.ReadAllText("../Infrastructure/cdk-outputs.json");
+var cdkOutputsFilePath = Environment.GetEnvironmentVariable("CDK_OUTPUTS_PATH");
+var cdkOutputsFileContent = File.ReadAllText(cdkOutputsFilePath ?? "../Infrastructure/cdk-outputs.json");
 var cdkOutputs = JsonConvert.DeserializeObject(cdkOutputsFileContent) as dynamic;
 
-var topSecretArn = cdkOutputs["AwsCdkCSharp-Secrets-Stack-Step-3"]["AwsCdkCSharpSecretsStackStep3TopSecretArn"];
+var topSecretArn = cdkOutputs["AwsCdkCSharp-Secrets-Stack-Step-4"]["AwsCdkCSharpSecretsStackStep4TopSecretArn"];
 Console.WriteLine($"Setting secret for ARN {topSecretArn}");
 
-var credentials = LoadSsoCredentials("default");
-var client = new AmazonSecretsManagerClient(credentials, RegionEndpoint.APSoutheast2);
+AmazonSecretsManagerClient client;
+if (!string.IsNullOrWhiteSpace(cdkOutputsFilePath))
+{
+    client = new AmazonSecretsManagerClient();
+}
+else
+{
+    var credentials = LoadSsoCredentials("default");
+    client = new AmazonSecretsManagerClient(credentials, RegionEndpoint.APSoutheast2);
+}
 
 await client.UpdateSecretAsync(new UpdateSecretRequest
 {
