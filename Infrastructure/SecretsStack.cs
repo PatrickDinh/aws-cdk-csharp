@@ -11,9 +11,12 @@ namespace Infrastructure
 
         internal SecretsStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
         {
-            TopSecret = new Secret(this, $"{id}-TopSecret", new SecretProps()
+            TopSecret = new Secret(this, $"{id}-TopSecret");
+            
+            new CfnOutput(this, $"{id}-TopSecretArn", new CfnOutputProps
             {
-                SecretStringValue = new SecretValue("Do not tell anyone")
+                ExportName = $"{id}-TopSecretArn",
+                Value = TopSecret.SecretArn
             });
         }
     }
